@@ -1,0 +1,19 @@
+*{
+    border: 1px solid black;
+}
+.contatiner{
+    position: relative;
+    background-color: wheat;
+}
+div{
+    width: 100px;
+    height: 100px;
+    background-color: burlywood;
+    margin-top: 10px;
+}
+.box{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    background-color: brown;
+}

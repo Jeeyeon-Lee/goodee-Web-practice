@@ -1,0 +1,20 @@
+*{
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+.wrap{
+    width: 300px;
+    height: 600px;
+    border: 10px solid bisque;
+    margin : 100px auto;
+}
+.wrap .box1{
+    width: 280px;
+    height: 290px;
+    background-color: burlywood;
+}
+.wrap .box2{
+    width: 280px;
+    height: 290px;
+    background-color: brown;
+}

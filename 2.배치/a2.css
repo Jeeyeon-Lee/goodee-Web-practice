@@ -1,0 +1,48 @@
+.wrap{
+    width: 800px;
+    border: 10px solid rgb(197, 139, 64);
+    margin: 100px auto;
+}
+
+.wrap::after{
+    content: "hello";
+    display: block;
+    clear: both;
+}
+
+.left{
+    width: 400px;
+    height: 400px;
+    background-color: bisque;
+    float: left;
+}
+.right{
+    width: 400px;
+    height: 400px;
+    background-color: green;
+    float: left;
+    position: relative;
+}
+
+.right p{
+    width: 100px;
+    height: 100px;
+    background-color: pink;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.bottom{
+    width: 800px;
+    height: 100px;
+    background-color: gray;
+    /* clear: both; */
+}
+
+.wrap::after{
+    /* 가상선택자, float를 해제, 블록으로, 빈문자열 넣기 */
+    content: "Hello";
+    display: block;
+    clear: both; 
+}

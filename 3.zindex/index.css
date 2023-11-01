@@ -1,0 +1,79 @@
+*{
+    box-sizing: border-box;
+}
+/* 캡처링 - 안으로 작동 -> 부모걸 없애면 자식것도 없어짐 */
+ul{
+    list-style: none;
+}
+/* 반응형 고려 width 100%
+flex
+justify -> 서로 공간두고 배치하기
+align
+zindex */
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    z-index: 2;
+}
+
+header h1{
+    color: white;
+    font: 30px;
+    font-weight: bolder;
+    z-index: 2;
+}
+
+header .gnb li{
+    color: white;
+    margin: 0px 20px;
+}
+
+.gnb{
+    display: flex;
+    float: left;
+    font-size: 20px;
+    font-weight: bolder;
+    z-index: 2;
+}
+
+.sns{
+    display: flex;
+    float: left;
+    font-weight: bolder;
+    z-index: 2;
+}
+
+.sns li{
+    margin: 0px 5px;
+}
+
+.sns li a{
+    font-size: 15px;
+    color: white;
+}
+
+div{
+    z-index: 1;
+    position: absolute;
+    top: 0%;
+    left: 0px;
+    overflow: hidden;
+}
+div video{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+footer{
+    position: absolute;
+    font: 12px/1 "arial";
+    color: white;
+    text-align: center;
+    width: 100%;
+    bottom: 10px;
+    letter-spacing: 3px;
+    z-index: 2;
+}

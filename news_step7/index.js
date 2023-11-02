@@ -5,8 +5,8 @@ const container = document.getElementById('root')
 const ul = document.createElement('ul') //DOM  API가지고 태그를 만드니까 직관적이지 않다. DOM Tree그려지지 않아서.
 //페이징관리 상수를 선언하자 -> 페이지 나눌 때 사용하기
 const store = {
-  currentPage : 1,
-  totalPage : 47,
+  currentPage: 1,
+  totalPage: 47,
 }
 
 getData = (url) => {
@@ -20,10 +20,10 @@ getNewsData = () => {
   const newsData = getData(TITLE_URL)
   const newsPage = []
   newsPage.push('<ul>')
-  for (let i = (currentPage-1)*10; i < currentPage*10; i++) {
+  for (let i = (store.currentPage - 1) * 10; i < store.currentPage * 10; i++) {
     newsPage.push(`
       <li>
-        <a href="#show${newsData[i].id}">
+        <a href="#/show/${newsData[i].id}">
           ${newsData[i].title}, (😍${newsData[i].comments_count})
         </a>
       </li>
@@ -35,11 +35,11 @@ getNewsData = () => {
   newsPage.push(`
     <div>
       <a href="#/page/${
-        store.currentPage > 1 ? store.currentPage -1 : 1
+        store.currentPage > 1 ? store.currentPage - 1 : 1
       }">이전페이지</a>
       
       <a href="#/page/${
-        store.currentPage < 3 ? store.currentPage +1 : 3
+        store.currentPage < 3 ? store.currentPage + 1 : 3
       }">다음페이지</a>
     </div>
   `)
@@ -62,10 +62,11 @@ router = () => {
   // 타입까지 같니? ===
   //#만 있으면 빈값을 반환함 -> 글목록보기로 이동
   if (routerPath === '') {
-    getNewsData() //글 목록보기
-  } else if(routerPath.indexOf('#/page/') >= 0) {
+    getNewsData()
+  } else if (routerPath.indexOf('#/page/') >= 0) {
     store.currentPage = Number(routerPath.substring(7))
-  } else{
+    getNewsData()
+  } else {
     newsDetail() //글 내용보기
   }
 }

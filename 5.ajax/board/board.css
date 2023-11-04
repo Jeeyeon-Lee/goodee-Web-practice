@@ -1,0 +1,14 @@
+body{
+    text-align: center;
+}
+table{
+    margin: auto;
+    border: 1px solid black;
+}
+th, td{
+    border: 1px dotted black;
+}
+
+th{
+    background-color: beige;
+}

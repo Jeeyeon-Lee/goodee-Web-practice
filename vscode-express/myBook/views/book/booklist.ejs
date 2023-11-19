@@ -15,22 +15,77 @@
   <span id="page" class="px-3">1/10</span>
   <button class="btn btn-primary btn-sm px-5" id="next">다음</button>
 </div>
+<hr />
+<div class="row" id="list_book"></div>
+<!-- 리스트북에 들어갈 템플릿 작성하기 with 핸들바스 & bootstrap -->
+<script id="temp_book" type="text/x-handlebars-template">
+  {{#each documents}}
+  <!-- 6, 4, 2(해상도에 따른 화면 배치) -->
+  <div class="col-6 col-md-4 col-lg-2">
+    <div class="card my-2">
+      <div class="card-body">
+        <img src="{{image thumbnail}}" alt="도서이미지" style="cursor: pointer;width: 80%;" index="{{@index}}">
+        <div class="mt-2">
+          {{title}}({{authors}})
+        </div>
+      </div>
+      <!-- 하나에 대한 값 불러오기 종료 -->
+      <div class="card-footer" style="font-size: 0.8rem;">
+      {{format price}}<a href="{{url}}">(url)</a>
+      <span class="cart ms-3" style="cursor: pointer;color: green;">CART</span>
+      </div>    
+    </div>
+  </div>
+  {{/each}}
+</script>
+<!-- 이전, 다음버튼 처리 -->
+<div class="text-center mt-2">
+  <button class="btn btn-primary btn-sm px-5" id="prev">이전</button>
+  <span id="page" class="px-3">1/10</span>
+  <button class="btn btn-primary btn-sm px-5" id="next">다음</button>
+</div>
+<!-- 사용자 입력값으로 책 검색하기 -->
 <script>
-  //책검색 API 가져오기, '자바'부분 나중에 변수로 수정 필요 
+  let query =$(frm.query).val()
+  let page=1
+  $('#next').on('click',e=>{
+    page++
+    bookList()
+  })
+  $('#prev').on('click',e=>{
+    page--
+    bookList()
+  })
+  // 도서이미지 클릭시 도서 식별자 가져오기
+  $('#list_book').on('click','.card img',(e)=>{
+    let index = $(this).attr('index')
+    console.log(`사용자가 선택한 이미지 index 값은 ${index}`);
+  })
+  // 책검색 API 가져오기 
   const bookList =()=>{
+    console.log(`page = ${page}.query=${query}`);
     $.ajax({
       type:"get",
-      url: "https://dapi.kakao.com/v3/search/book?target=title",
+      url: "https://openapi.naver.com/v1/search/book.json?target=title",
       headers: {Authorization:"KakaoAK bb648d6cb290a85832f449fed6738ea3"},
-      data:{query:'자바',page:1, size:5},
+      data:{query:query,page:page, size:20},
       dataType:'json',
+      // 성공시 컴파일한 내용 화면에 띄우기()
       success: function(data){
         console.log(data); //[object Objcect] -> JSON.stringify()
-    },
+        const temp = Handlebars.compile($("#temp_book").html())
+        let is_ent = data.meta.is_end
+        console.log(`너 마지막 페이지야 ${is_end}`);
+        let total = data.meta.total_count
+        console.log(`검색결과의 총 레코드 수 ${total}`);
+        let last = Mathceil(total/20)
+        if(last===1)  $('#prev').attr('disabled',true)
+        else $('#prev').attr('disabled',false)
+      },
     error:function(error){
       console.log(error);
     }    
-  }) //end of 비동기통신 처리
-}//end of bookList()
+    }) //end of 비동기통신 처리
+  }//end of bookList()
 bookList(); //디폴트 호출
 </script>

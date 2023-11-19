@@ -1,11 +1,11 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js'
 const firebaseConfig = {
-  apiKey: 'AIzaSyCltWlMRHeCS61FnAfLs3B-hsgaK_o5Nl0',
-  authDomain: 'goodee-project-b2af0.firebaseapp.com',
-  projectId: 'goodee-project-b2af0',
-  storageBucket: 'goodee-project-b2af0.appspot.com',
-  messagingSenderId: '457035965872',
-  appId: '1:457035965872:web:dc2ccf6a403dd450d0e275',
+  apiKey: 'AIzaSyATfx1b1yCgIlUzKrkjdES25MUtYqgTihI',
+  authDomain: 'mybook2-70005.firebaseapp.com',
+  projectId: 'mybook2-70005',
+  storageBucket: 'mybook2-70005.appspot.com',
+  messagingSenderId: '642271234688',
+  appId: '1:642271234688:web:3ff67d098fc78f6ba7b465',
 }
 
 // Initialize Firebase
